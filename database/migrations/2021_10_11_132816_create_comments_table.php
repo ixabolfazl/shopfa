@@ -16,7 +16,7 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->text('body');
-            $table->foreignId('parent_id')->constrained('comments');
+            $table->foreignId('parent_id')->nullable()->constrained('comments');
             $table->foreignId('user_id')->constrained();
             $table->morphs('commentable');
             $table->tinyInteger('seen')->default(0)->comment('0 => unseen, 1 => seen');
