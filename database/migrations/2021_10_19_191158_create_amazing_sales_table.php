@@ -18,7 +18,7 @@ class CreateAmazingSalesTable extends Migration
             $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('percentage');
             $table->tinyInteger('status')->default(0);
-            $table->timestamp('start_data')->useCurrent();
+            $table->timestamp('start_date')->useCurrent();
             $table->timestamp('end_date')->useCurrent();
             $table->timestamps();
             $table->softDeletes();
