@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Content;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Content\PostCategoryRequest;
 use App\Models\Content\PostCategory;
 use Illuminate\Http\Request;
 
@@ -23,25 +24,19 @@ class CategoryController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(PostCategoryRequest $request)
     {
         //
     }
 
 
-    public function show($id)
+    public function edit(PostCategory $postCategory)
     {
         //
     }
 
 
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
+    public function update(PostCategoryRequest $request, PostCategory $postCategory)
     {
         //
     }
