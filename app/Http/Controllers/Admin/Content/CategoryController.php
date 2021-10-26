@@ -38,13 +38,16 @@ class CategoryController extends Controller
 
     public function edit(PostCategory $postCategory)
     {
-        //
+        return view('admin.content.category.edit', compact(['postCategory']));
     }
 
 
     public function update(PostCategoryRequest $request, PostCategory $postCategory)
     {
-        //
+        $inputs = $request->all();
+        $inputs['image'] = 'image';
+        $postCategory->update($inputs);
+        return redirect()->route('admin.content.category.index');
     }
 
 
