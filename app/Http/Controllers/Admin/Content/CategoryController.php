@@ -56,4 +56,11 @@ class CategoryController extends Controller
         $postCategory->delete();
         return redirect()->route('admin.content.category.index');
     }
+
+    public function status(PostCategory $postCategory)
+    {
+        $postCategory->status = $postCategory->status == 0 ? 1 : 0;
+        $result = $postCategory->save();
+        return response()->json(['status' => $result, 'checked' => (bool)$postCategory->status]);
+    }
 }
