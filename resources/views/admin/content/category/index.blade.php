@@ -13,8 +13,7 @@
         <li class="breadcrumb-item font-size-12 active" aria-current="page"> دسته بندی</li>
     </ol>
 </nav>
-
-
+@include('admin.alerts.alert-section.success')
 <section class="row">
     <section class="col-12">
         <section class="main-body-container">
@@ -88,7 +87,9 @@
     </section>
 </section>
 @endsection
+
 @section('script')
+
     <script type="text/javascript">
         function changeStatus(id){
             var element = $("#" + id)
