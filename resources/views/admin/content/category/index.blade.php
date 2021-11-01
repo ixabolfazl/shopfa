@@ -91,26 +91,51 @@
 @section('script')
 
     <script type="text/javascript">
-        function changeStatus(id){
+        function changeStatus(id) {
             var element = $("#" + id)
             var url = element.attr('data-url')
             var elementValue = !element.prop('checked');
 
             $.ajax({
-                url : url,
-                type : "GET",
-                success : function(response){
-                    if(response.status){
-                        if(response.checked)
+                url: url,
+                type: "GET",
+                success: function (response) {
+                    if (response.status) {
+                        if (response.checked) {
                             element.prop('checked', true);
-                        else
+                            Toast('دسته بندی با موفقیت فعال شد', 'success')
+                        } else {
                             element.prop('checked', false);
-                    }
-                    else{
+                            Toast('دسته بندی با موفقیت غیر فعال شد', 'success')
+                        }
+                    } else {
                         element.prop('checked', elementValue);
+                        Toast('هنگام ویرایش مشکلی بوجود امده است', 'danger')
                     }
+                },
+                error: function () {
+                    element.prop('checked', elementValue);
+                    Toast('ارتباط برقرار نشد', 'danger')
                 }
-            })
+            });
+
+            function Toast(message, type) {
+
+                var ToastTag = '<section class="toast" data-delay="5000">\n' +
+                    '<section class="toast-body py-3 d-flex bg-' + type + ' text-white">\n' +
+                    '<strong class="ml-auto">' + message + '</strong>\n' +
+                    '<button type="button" class="mr-2 close" data-dismiss="toast" aria-label="Close">\n' +
+                    '<span aria-hidden="true">&times;</span>\n' +
+                    '</button>\n' +
+                    '</section>\n' +
+                    '</section>';
+
+                $('.toast-wrapper').append(ToastTag);
+                $('.toast').toast('show').delay(5500).queue(function () {
+                    $(this).remove();
+                })
+            }
         }
     </script>
+
 @endsection
